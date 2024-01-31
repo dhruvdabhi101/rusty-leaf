@@ -8,13 +8,14 @@ use darkdown::converter::converter::Converter;
 use dialoguer::{theme::ColorfulTheme, Input, Password, Select};
 use service::login_request;
 
-fn main() {
+/// Main function
+pub fn main() {
     let args = Args::parse();
     parse_args(args);
 }
 
 /// Parse the arguments and call the appropriate function
-fn parse_args(args: Args) {
+pub fn parse_args(args: Args) {
     match args.command {
         Some(command) => match command {
             Commands::Login => login(),
@@ -36,11 +37,13 @@ fn parse_args(args: Args) {
 }
 
 /// Login to the server
-fn login() {
+pub fn login() {
+    // Get the username and password from the user
     let name = Input::<String>::with_theme(&ColorfulTheme::default())
         .with_prompt("Your Username")
         .interact_text()
         .unwrap();
+    // Get the password from the user
     let password = Password::with_theme(&ColorfulTheme::default())
         .with_prompt("Your Password")
         .interact()
