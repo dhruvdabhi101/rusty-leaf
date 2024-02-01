@@ -16,7 +16,9 @@ pub enum Commands {
     #[clap(about = "Logout from the server")]
     Logout,
     #[clap(about = "Convert a file to HTML")]
-    Convert(ConvertArgs)
+    Convert(ConvertArgs),
+    #[clap(about = "Deploy a file to the server")]
+    Deploy(DeployArgs),
 }
 
 /// Convert Arguments for the CLI
@@ -24,6 +26,16 @@ pub enum Commands {
 pub struct ConvertArgs {
     /// Input File
     #[clap(short, long, )]
+    pub input: String,
+    /// Markdown Support
+    #[clap(short, long)]
+    pub md: bool,
+}
+
+/// Deploy Arguments for the CLI
+#[derive(Parser, Debug, Clone)]
+pub struct DeployArgs {
+    /// Input File
     pub input: String,
     /// Markdown Support
     #[clap(short, long)]
