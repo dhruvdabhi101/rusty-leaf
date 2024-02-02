@@ -26,7 +26,7 @@ pub fn parse_args(args: Args) {
             Commands::Deploy(deploy_arg) => deploy(deploy_arg.input, deploy_arg.md),
         },
         None => {
-            let items = vec!["Login", "Deploy", "See List"];
+            let items = vec!["Login", "See List", "Logout", "Exit"];
             let selection = Select::with_theme(&dialoguer::theme::ColorfulTheme::default())
                 .with_prompt("Choose your destiny")
                 .default(0)
@@ -35,8 +35,9 @@ pub fn parse_args(args: Args) {
                 .unwrap();
             match selection {
                 0 => login(),
-                1 => println!("Deploy"),
-                2 => println!("See List"),
+                1 => println!("See List"),
+                2 => println!("Logout"),
+                3 => (),
                 _ => println!("Error"),
             }
         }

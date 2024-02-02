@@ -44,6 +44,7 @@ pub fn login() {
     }
 }
 
+/// deploy the file to the database
 pub fn deploy(file: String, md: bool) {
     println!("Deploying file: {}", file);
     println!("Markdown Support: {}", md);
@@ -63,6 +64,7 @@ pub fn deploy(file: String, md: bool) {
     create_page(title, content, slug, published);
 }
 
+/// checks if the token exists
 pub fn check_if_token_exists() -> bool {
     let home = std::env::var("HOME").unwrap();
     let if_file_exists = fs::metadata(format!("{}/.rusty-leaf.toml", home));
@@ -73,6 +75,7 @@ pub fn check_if_token_exists() -> bool {
     }
 }
 
+/// gets the token from the file
 pub fn get_token() -> String {
     if check_if_token_exists() {
         let file = fs::read_to_string(format!("{}/.rusty-leaf.toml", std::env::var("HOME").unwrap()));
