@@ -68,16 +68,12 @@ pub fn deploy(file: String, md: bool) {
 pub fn check_if_token_exists() -> bool {
     let home = std::env::var("HOME").unwrap();
     let if_file_exists = fs::metadata(format!("{}/.rusty-leaf.toml", home));
-    if if_file_exists.is_ok() {
-        true
-    } else {
-        false
-    }
+    if_file_exists.is_ok()
 }
 /// logout
 pub fn logout() {
     let home = std::env::var("HOME").unwrap();
-    let result = std::fs::remove_file(format!("{}/.rusty-leaf.toml", home));
+    let _result = std::fs::remove_file(format!("{}/.rusty-leaf.toml", home));
 }
 
 /// gets the token from the file
@@ -89,8 +85,8 @@ pub fn get_token() -> String {
         ));
         if file.is_ok() {
             let file = file.unwrap();
-            let token = file.replace("token = ", "");
-            token
+
+            file.replace("token = ", "")
         } else {
             println!("Unable to read file");
             String::from("")
