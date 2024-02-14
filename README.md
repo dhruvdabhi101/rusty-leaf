@@ -8,7 +8,6 @@ Usage: rusty-leaf [COMMAND]
 Commands:
   login    Login to the server
   logout   Logout from the server
-  convert  Convert a file to HTML
   deploy   Deploy a file to the server
   help     Print this message or the help of the given subcommand(s)
 
