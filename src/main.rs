@@ -6,7 +6,7 @@ use args::{Args, Commands};
 use clap::Parser;
 use darkdown::converter::converter::Converter;
 use dialoguer::Select;
-use runner::{login, deploy};
+use runner::{deploy, login, logout};
 
 /// Main function
 pub fn main() {
@@ -22,11 +22,11 @@ pub fn parse_args(args: Args) {
             Commands::Logout => println!("Logout"),
             Commands::Convert(converter) => {
                 Converter::new().convert_to_html(converter.input.as_str());
-            },
+            }
             Commands::Deploy(deploy_arg) => deploy(deploy_arg.input, deploy_arg.md),
         },
         None => {
-            let items = vec!["Login", "See List", "Logout", "Exit"];
+            let items = vec!["Login", "Logout", "Exit"];
             let selection = Select::with_theme(&dialoguer::theme::ColorfulTheme::default())
                 .with_prompt("Choose your destiny")
                 .default(0)
@@ -35,9 +35,8 @@ pub fn parse_args(args: Args) {
                 .unwrap();
             match selection {
                 0 => login(),
-                1 => println!("See List"),
-                2 => println!("Logout"),
-                3 => (),
+                1 => logout(),
+                2 => (),
                 _ => println!("Error"),
             }
         }

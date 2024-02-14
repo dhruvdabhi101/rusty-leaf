@@ -25,7 +25,7 @@ pub enum Commands {
 #[derive(Parser, Debug, Clone)]
 pub struct ConvertArgs {
     /// Input File
-    #[clap(short, long, )]
+    #[clap(short, long)]
     pub input: String,
     /// Markdown Support
     #[clap(short, long)]

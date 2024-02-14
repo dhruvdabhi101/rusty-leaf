@@ -1,6 +1,6 @@
-use std::{fs, io::Write};
+use crate::service::{create_page, login_request};
 use dialoguer::{theme::ColorfulTheme, Input, Password};
-use crate::service::{login_request, create_page};
+use std::{fs, io::Write};
 
 /// Login to the server
 pub fn login() {
@@ -74,11 +74,19 @@ pub fn check_if_token_exists() -> bool {
         false
     }
 }
+/// logout
+pub fn logout() {
+    let home = std::env::var("HOME").unwrap();
+    let result = std::fs::remove_file(format!("{}/.rusty-leaf.toml", home));
+}
 
 /// gets the token from the file
 pub fn get_token() -> String {
     if check_if_token_exists() {
-        let file = fs::read_to_string(format!("{}/.rusty-leaf.toml", std::env::var("HOME").unwrap()));
+        let file = fs::read_to_string(format!(
+            "{}/.rusty-leaf.toml",
+            std::env::var("HOME").unwrap()
+        ));
         if file.is_ok() {
             let file = file.unwrap();
             let token = file.replace("token = ", "");
