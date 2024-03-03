@@ -19,7 +19,7 @@ pub fn parse_args(args: Args) {
     match args.command {
         Some(command) => match command {
             Commands::Login => login(),
-            Commands::Logout => println!("Logout"),
+            Commands::Logout => logout(),
             Commands::Convert(converter) => {
                 Converter::new().convert_to_html(converter.input.as_str());
             }
