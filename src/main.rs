@@ -24,6 +24,7 @@ pub fn parse_args(args: Args) {
                 Converter::new().convert_to_html(converter.input.as_str());
             }
             Commands::Deploy(deploy_arg) => deploy(deploy_arg.input, deploy_arg.md),
+            Commands::Watch(watch_arg) => println!("Watch args {:?}", watch_arg)
         },
         None => {
             let items = vec!["Login", "Logout", "Exit"];

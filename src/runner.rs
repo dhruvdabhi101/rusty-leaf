@@ -96,3 +96,6 @@ pub fn get_token() -> String {
         String::from("")
     }
 }
+
+pub fn watch() {
+}

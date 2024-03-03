@@ -19,6 +19,8 @@ pub enum Commands {
     Convert(ConvertArgs),
     #[clap(about = "Deploy a file to the server")]
     Deploy(DeployArgs),
+    #[clap(about = "Watch test deployment of the page")]
+    Watch(WatchArgs),
 }
 
 /// Convert Arguments for the CLI
@@ -40,4 +42,10 @@ pub struct DeployArgs {
     /// Markdown Support
     #[clap(short, long)]
     pub md: bool,
+}
+
+#[derive(Parser, Debug, Clone)]
+pub struct WatchArgs {
+    /// Input File
+    pub intput: String
 }
